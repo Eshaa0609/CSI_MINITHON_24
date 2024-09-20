@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bus Tracker - TSEC</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <style>
+    /* Center the map box */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f4f4f4;  /* Light background to make the map pop */
+    }
+
+    /* Create a fixed size box for the map */
+    #map {
+      height: 600px;
+      width:  800px;
+      border: 2px solid #ccc;  /* Optional border for the map box */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Optional shadow for a polished look */
+    }
+
+    /* Optional: center the title */
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h2>Real-time Bus Tracker - Bandra Station to TSEC</h2>
+    <div id="map"></div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script>
+    // Updated bus stops with 5 intermediate stops between Bandra Railway Station and TSEC
+    const busStops = [
+      { lat: 19.0544, lng: 72.8404 },  // Bandra Railway Station (West)
+      { lat: 19.0550, lng: 72.8398 },  // Stop 1 (Intermediate)
+      { lat: 19.0562, lng: 72.8395 },  // Stop 2 (Intermediate)
+      { lat: 19.0575, lng: 72.8392 },  // Stop 3 (Intermediate)
+      { lat: 19.0590, lng: 72.8385 },  // Stop 4 (Intermediate)
+      { lat: 19.0610, lng: 72.8375 },  // Stop 5 (Intermediate)
+      { lat: 19.0666, lng: 72.8354 }   // Thadomal Shahani Engineering College (TSEC)
+    ];
+
+    // Initialize Leaflet map
+    const map = L.map('map').setView([19.0544, 72.8404], 15);  // Centered at Bandra Railway Station
+
+    // Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Create a custom bus icon
+    const busIcon = L.icon({
+      iconUrl: 'https://pnghq.com/wp-content/uploads/bus-icons-in-transparent-image.png',  // Bus icon URL
+      iconSize: [40, 40],  // Size of the icon (width, height)
+      iconAnchor: [20, 40],  // Anchor point of the icon (half the width, full height)
+      popupAnchor: [0, -40]  // Position of the popup relative to the icon
+    });
+
+    // Create markers for Bandra Station and TSEC with circle markers for emphasis
+    const bandraStation = L.circleMarker([19.0544, 72.8404], {
+      radius: 10,
+      color: 'black',
+      fillColor: 'black',
+      fillOpacity: 0.8
+    }).addTo(map).bindPopup('Bandra Railway Station (West)').openPopup();
+
+    const tsec = L.circleMarker([19.0666, 72.8354], {
+      radius: 10,
+      color: 'black',
+      fillColor: 'black',
+      fillOpacity: 0.8
+    }).addTo(map);
+
+     // Add pin markers for Bandra Station and TSEC
+     const bandraPin = L.marker([19.0544, 72.8404]).addTo(map).bindPopup('Bandra Railway Station (West)').openPopup();
+    const tsecPin = L.marker([19.0666, 72.8354]).addTo(map).bindPopup('TSEC - Thadomal Shahani Engineering College').openPopup();
+
+    // Create a marker for the bus location with the bus icon
+    const busMarker = L.marker([19.0544, 72.8404], { icon: busIcon }).addTo(map).bindPopup('Bus Location');
+    busMarker.openPopup();
+
+    // Draw the bus route (Polyline connecting the bus stops)
+    const busRoute = L.polyline(busStops, {
+      color: 'red',
+      weight: 5,
+      opacity: 0.7
+    }).addTo(map);
+
+    // Simulate the bus moving along the stops
+    let currentStopIndex = 0;
+
+    function moveBus() {
+      // Update bus marker position
+      busMarker.setLatLng(busStops[currentStopIndex]);
+      currentStopIndex = (currentStopIndex + 1) % busStops.length;  // Cycle through stops
+    }
+
+    // Move the bus every 3 seconds
+    setInterval(moveBus, 3000);
+  </script>
+</body>
+</html>
