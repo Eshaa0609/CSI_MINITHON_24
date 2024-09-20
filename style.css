@@ -1,0 +1,220 @@
+/* Global styles */
+body {
+    background: linear-gradient(to bottom right, #000000, #1a1a1a);
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+}
+
+/* Navbar styles */
+.navbar {
+    background: linear-gradient(to right, #4a0e4e, #810541);
+    padding: 15px 0;
+}
+
+.navbar-brand, .nav-link, .navbar-nav .nav-link.active, .navbar .navbar-toggler-icon {
+    color: #ffffff !important;
+    transition: all 0.3s ease;
+}
+
+.navbar-brand:hover, .nav-link:hover {
+    color: #ffd700 !important; /* Gold color on hover */
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+.navbar-nav .nav-link.active {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+.navbar-toggler {
+    border-color: rgba(255,255,255,0.5);
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
+}
+
+.dropdown-menu {
+    background-color: #4a0e4e;
+}
+
+.dropdown-item {
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+    background-color: #810541;
+    color: #ffd700;
+}
+
+/* Search form styles */
+.form-control {
+    background-color: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.2);
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    background-color: rgba(255,255,255,0.2);
+    border-color: #ffd700;
+    box-shadow: 0 0 0 0.25rem rgba(255, 215, 0, 0.25);
+}
+
+.form-control::placeholder {
+    color: rgba(255,255,255,0.5);
+}
+
+.btn-outline-success {
+    color: #ffffff;
+    border-color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-success:hover {
+    background-color: #ffd700;
+    border-color: #ffd700;
+    color: #4a0e4e;
+}
+
+.btn-outline-success:active, .btn-outline-success:focus {
+    background-color: #ffd700 !important;
+    border-color: #ffd700 !important;
+    color: #4a0e4e !important;
+    box-shadow: 0 0 0 0.25rem rgba(255, 215, 0, 0.5) !important;
+}
+
+/* Styles for the carousel container */
+#carouselExampleAutoplaying {
+    max-width: 80%;
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+/* Styles for carousel items */
+.carousel-item {
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    position: relative;
+}
+
+/* Styles for images inside carousel items */
+.carousel-item img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+}
+
+/* Carousel control buttons */
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    background-color: rgba(74, 14, 78, 0.5);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.carousel-control-prev:hover .carousel-control-prev-icon,
+.carousel-control-next:hover .carousel-control-next-icon {
+    background-color: rgba(129, 5, 65, 0.8);
+    transform: scale(1.1);
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    #carouselExampleAutoplaying {
+        max-width: 95%;
+    }
+    
+    .carousel-item img {
+        max-width: 95%;
+        max-height: 95%;
+    }
+}
+
+/* Existing styles remain unchanged */
+
+/* ... (keep all the previous styles) ... */
+
+/* New styles for cards and departments section */
+
+/* Center align "Our Departments" text */
+#fp-content{
+    text-align: center;
+    margin: 40px 0;
+    color: #ffd700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Card container */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Individual card styling */
+.card {
+    width: 18rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    color: #ffd700;
+    margin-bottom: 15px;
+}
+
+.card-text {
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.btn-primary {
+    background-color: #4a0e4e;
+    border-color: #4a0e4e;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #810541;
+    border-color: #810541;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .card {
+        width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 576px) {
+    .card {
+        width: 100%;
+    }
+}
